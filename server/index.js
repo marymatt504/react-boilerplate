@@ -2,6 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
+const bodyParser = require('body-parser');
 
 const argv = require('./argv');
 const port = require('./port');
@@ -14,20 +15,36 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+const db = require('../database/index.js');
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-app.post('/restaurants', (req, res) => {
-  let { name, neighborhood, url, averageDishPrice } = req.body;
+app.use(bodyParser.json());
 
-  db.addRestaurant(name, neighborhood, url, averageDishPrice, (err, results) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    } else {
-      res.status(201).send();
-    }
-  })
+// app.use(express.static(__dirname + '/../app'));
+
+
+app.post('/restaurants', (req, res) => {
+
+  console.log(req.body);
+
+  const { name, neighborhood, url, averageDishPrice } = req.body;
+
+  db.addRestaurant(
+    name,
+    neighborhood,
+    url,
+    averageDishPrice,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        res.status(201).send();
+      }
+    },
+  );
 });
 
 // In production we need to pass these values in instead of relying on webpack

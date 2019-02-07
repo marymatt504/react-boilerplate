@@ -35,7 +35,7 @@ import { translationMessages } from './i18n';
 
 // Create redux store with history
 const initialState = {
-  restaurants: []
+  restaurants: [],
 };
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');

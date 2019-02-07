@@ -3,24 +3,21 @@ const db = './credentials.js';
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  user: db.user,
-  database: 'best_restaurants'
+  user: 'root',
+  database: 'best_restaurants',
 });
 
-// const addCat = (username, password, breed, birthdate, imageUrl, name, weight, callback) => {
-//   let salt = utils.createRandom32String();
-//   let hash = utils.createHash(password, salt);
+const addRestaurant = (name, neighborhood, url, averageDishPrice, callback) => {
 
-//   const queryStr = `INSERT INTO cats (username, password, breed, birthdate, imageUrl, name, salt, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-//   connection.query(queryStr, [username, hash, breed, birthdate, imageUrl, name, salt, weight], (error, results) => {
-//     if (error) {
-//       callback(error);
-//     } else {
-//       callback(null, results);
-//     }
-//   });
-// };
-
+  const queryStr = `INSERT INTO restaurants (name, neighborhood, url, averageDishPrice) VALUES (?, ?, ?, ?)`;
+  connection.query(queryStr, [name, neighborhood, url, averageDishPrice], (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 
 // const getCatByUsername = (username, callback) => {
 //   const queryStr = `SELECT * FROM cats WHERE username = ?`;
@@ -99,6 +96,4 @@ const connection = mysql.createConnection({
 //   });
 // };
 
-
-
-module.exports = {};
+module.exports = { addRestaurant };
