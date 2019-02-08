@@ -22,6 +22,7 @@ const Title = styled.p`
   color: #78ad9e;
   font-size: 130%;
   font-weight: bold;
+  margin: 2%;
 `;
 
 const Subtitle = styled.p`
@@ -31,7 +32,7 @@ const Subtitle = styled.p`
 
 const SignUpForm = styled.form`
   border-style: solid;
-  border-color: darkgrey; 
+  border-color: darkgrey;
   padding: 1%;
   margin: 2%;
 `;
@@ -49,7 +50,6 @@ export default class HomePage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearInput = this.clearInput.bind(this);
-
   }
 
   handleChange(event) {

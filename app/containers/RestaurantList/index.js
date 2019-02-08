@@ -7,9 +7,5 @@ import styled from 'styled-components';
 /* eslint-disable react/prefer-stateless-function */
 
 export default function RestaurantList() {
-  return (
-    <div>
-      Restaurants will be mapped here.
-    </div>
-  );
+  return <div>Restaurants will be mapped here.</div>;
 }

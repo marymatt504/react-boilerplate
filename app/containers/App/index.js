@@ -11,8 +11,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import NavBar from '../../components/NavBar';
 import RestaurantList from 'containers/RestaurantList/Loadable';
+import NavBar from '../../components/NavBar';
 // import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';

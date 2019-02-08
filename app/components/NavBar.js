@@ -21,8 +21,12 @@ const NavButton = styled.button`
 export default function NavBar() {
   return (
     <NavContainer>
-      <Link to={'/'}><NavButton>Add a Restaurant</NavButton></Link>
-      <Link to={'/restaurants'}><NavButton>See all Restaurants</NavButton></Link>
+      <Link to="/">
+        <NavButton>Add a Restaurant</NavButton>
+      </Link>
+      <Link to="/restaurants">
+        <NavButton>See all Restaurants</NavButton>
+      </Link>
     </NavContainer>
   );
 }
