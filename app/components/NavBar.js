@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavContainer = styled.div`
   border-bottom-style: solid;
@@ -17,11 +18,11 @@ const NavButton = styled.button`
   font-size: 110%;
 `;
 
-export default function Nav() {
+export default function NavBar() {
   return (
     <NavContainer>
-      <NavButton>Add a Restaurant</NavButton>
-      <NavButton>See all Restaurants</NavButton>
+      <Link to={'/'}><NavButton>Add a Restaurant</NavButton></Link>
+      <Link to={'/restaurants'}><NavButton>See all Restaurants</NavButton></Link>
     </NavContainer>
   );
 }

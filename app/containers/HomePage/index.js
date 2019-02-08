@@ -33,6 +33,7 @@ const SignUpForm = styled.form`
   border-style: solid;
   border-color: darkgrey; 
   padding: 1%;
+  margin: 2%;
 `;
 
 /* eslint-disable react/prefer-stateless-function */

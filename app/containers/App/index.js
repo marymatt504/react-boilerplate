@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NavBar from '../../components/NavBar';
+import RestaurantList from 'containers/RestaurantList/Loadable';
 // import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
@@ -23,6 +24,8 @@ export default function App() {
         <div>
           <Route path="/" component={NavBar} />
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/restaurants" component={RestaurantList} />
+          {/* <Route exact path="/restaurants/:id" component={RestaurantPage} /> */}
           {/* fall back route ---> <Route component={NotFoundPage} /> */}
         </div>
       </Router>
