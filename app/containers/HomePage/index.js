@@ -18,6 +18,23 @@ const FieldDiv = styled.div`
   margin-bottom: 0.2%;
 `;
 
+const Title = styled.p`
+  color: #78ad9e;
+  font-size: 130%;
+  font-weight: bold;
+`;
+
+const Subtitle = styled.p`
+  font-weight: bold;
+  font-size: 115%;
+`;
+
+const SignUpForm = styled.form`
+  border-style: solid;
+  border-color: darkgrey; 
+  padding: 1%;
+`;
+
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -30,40 +47,52 @@ export default class HomePage extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearInput = this.clearInput.bind(this);
+
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  clearInput(event) {
+    this.setState({
+      name: '',
+      neighborhood: '',
+      url: '',
+      averageDishPrice: '',
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-
     const submission = {
       name: this.state.name.toLowerCase(),
       neighborhood: this.state.neighborhood.toLowerCase(),
       url: this.state.url,
       averageDishPrice: this.state.averageDishPrice,
     };
-
     axios
       .post('/restaurants', submission)
       .then(() => {
-        console.log('saved');
+        alert('restaurant saved');
+        this.clearInput();
         // HOW DO WE CHANGE VIEW HERE WITH REACT ROUTER??
       })
       .catch(error => {
         console.log(error);
+        alert('restaurant already in database');
+        this.clearInput();
       });
   }
 
   render() {
     return (
       <div>
-        <h1>Restaurant Recommendations in San Francisco</h1>
+        <Title>Restaurant Recommendations in San Francisco</Title>
 
-        <form className="form" onSubmit={this.handleSubmit}>
-          <h2>Add a Restaurant...</h2>
+        <SignUpForm onSubmit={this.handleSubmit}>
+          <Subtitle>Add a Restaurant</Subtitle>
           <label>
             <FieldDiv>
               {`Restaurant Name: `}
@@ -117,7 +146,7 @@ export default class HomePage extends React.Component {
             className="formComponent"
             value="Register"
           />
-        </form>
+        </SignUpForm>
       </div>
     );
   }
