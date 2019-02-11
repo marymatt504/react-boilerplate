@@ -4,10 +4,10 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import axios from 'axios';
 import styled from 'styled-components';
-import messages from './messages';
+// import messages from './messages';
 
 const InputField = styled.input`
   border-style: solid;
@@ -56,7 +56,7 @@ export default class HomePage extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  clearInput(event) {
+  clearInput() {
     this.setState({
       name: '',
       neighborhood: '',
@@ -78,7 +78,6 @@ export default class HomePage extends React.Component {
       .then(() => {
         alert('restaurant saved');
         this.clearInput();
-        // HOW DO WE CHANGE VIEW HERE WITH REACT ROUTER??
       })
       .catch(error => {
         console.log(error);
