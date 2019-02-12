@@ -12,6 +12,7 @@ const Title = styled.p`
   font-weight: bold;
   margin: 2%;
 `;
+Title.displayName = 'Title';
 
 const Subtitle = styled.p`
   font-weight: bold;
@@ -64,10 +65,11 @@ class RestaurantList extends React.Component {
             {restaurantList ? (
               <ul>
                 {restaurantList.map(restaurant => (
-                  <Link to={`/restaurants/${restaurant.id}`} key={restaurant.id}>
-                    <li id={restaurant.id}>
-                      {restaurant.name || '[no name]'}
-                    </li>
+                  <Link
+                    to={`/restaurants/${restaurant.id}`}
+                    key={restaurant.id}
+                  >
+                    <li id={restaurant.id}>{restaurant.name || '[no name]'}</li>
                   </Link>
                 ))}
               </ul>
@@ -75,13 +77,21 @@ class RestaurantList extends React.Component {
                 <Subtitle>Loading...</Subtitle>
               )}
 
-            {error && <p style={{ color: 'red' }}>Uh oh - something went wrong!</p>}
+            {error && (
+              <p style={{ color: 'red' }}>Uh oh - something went wrong!</p>
+            )}
           </RestaurantListBox>
           <BestDealBox>
             {bestDeal ? (
               <div>
                 <Subtitle>Best Deal: </Subtitle>
-                <p>Average Dish Price only ${bestDeal.averageDishPrice} at <Link to={`/restaurants/${bestDeal.id}`}>{bestDeal.name}</Link>.</p>
+                <p>
+                  Average Dish Price only ${bestDeal.averageDishPrice} at{' '}
+                  <Link to={`/restaurants/${bestDeal.id}`}>
+                    {bestDeal.name}
+                  </Link>
+                  .
+                </p>
               </div>
             ) : (
                 <Subtitle>Loading...</Subtitle>
@@ -94,12 +104,13 @@ class RestaurantList extends React.Component {
 }
 
 const mapStateToProps = state => {
-
   const { restaurantList, error } = state._root.entries[0][1];
   // const fetching = state._root.entries[0][1].fetching;
+  const store = state._root.entries[0][1];
   const bestDeal = getBestDeal(state);
 
   return {
+    store,
     restaurantList,
     // fetching,
     bestDeal,

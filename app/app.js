@@ -16,15 +16,10 @@ import { ConnectedRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
+import App from 'containers/App';
+import LanguageProvider from 'containers/LanguageProvider';
 import { watcherSaga } from './sagas/sagas';
 
-// Import root app
-import App from 'containers/App';
-
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
-// Load the favicon and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
@@ -40,8 +35,8 @@ const initialState = {
   restaurants: {
     restaurantList: null,
     // fetching: false,
-    error: null
-  }
+    error: null,
+  },
 };
 
 const store = configureStore(initialState, history);

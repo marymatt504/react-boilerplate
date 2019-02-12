@@ -25,6 +25,7 @@ const Title = styled.p`
   font-weight: bold;
   margin: 2%;
 `;
+Title.displayName = 'Title';
 
 const Subtitle = styled.p`
   font-weight: bold;
@@ -37,6 +38,7 @@ const SignUpForm = styled.form`
   padding: 1%;
   margin: 2%;
 `;
+SignUpForm.displayName = 'SignUpForm';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.Component {
@@ -146,7 +148,8 @@ export default class HomePage extends React.Component {
           </label>
           <InputField
             type="submit"
-            className="formComponent"
+            className="registerButton"
+            id="registerButton"
             value="Register"
           />
         </SignUpForm>

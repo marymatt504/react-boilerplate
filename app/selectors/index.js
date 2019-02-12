@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getRestaurants = state => {
-  return state._root.entries[0][1].restaurantList;
-};
+const getRestaurants = state => state._root.entries[0][1].restaurantList;
 
 export const getBestDeal = createSelector([getRestaurants], restaurants => {
   if (restaurants) {
