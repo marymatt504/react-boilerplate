@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 const getRestaurants = state => {
-  console.log(state);
   return state._root.entries[0][1].restaurantList;
 };
 

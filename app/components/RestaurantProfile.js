@@ -29,7 +29,7 @@ const Box = styled.div`
 export default function RestaurantProfile({ match }) {
   return (
     <Box>
-      <Title>Will display info for store here</Title>
+      <Title>Will display info for restaurant here</Title>
       <Subtitle>Restaurant id: {match.params.id}</Subtitle>
     </Box>
   );
