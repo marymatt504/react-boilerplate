@@ -16,6 +16,8 @@ import { ConnectedRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
+import { watcherSaga } from './sagas/sagas';
+
 // Import root app
 import App from 'containers/App';
 
@@ -35,9 +37,17 @@ import { translationMessages } from './i18n';
 
 // Create redux store with history
 const initialState = {
-  restaurants: [],
+  restaurants: {
+    restaurantList: null,
+    fetching: false,
+    error: null
+  }
 };
+
 const store = configureStore(initialState, history);
+
+store.runSaga(watcherSaga);
+
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {

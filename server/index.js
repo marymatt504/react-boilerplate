@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 
 // app.use(express.static(__dirname + '/../app'));
 
-
 app.post('/restaurants', (req, res) => {
   // console.log(req.body);
   const { name, neighborhood, url, averageDishPrice } = req.body;
@@ -51,8 +50,8 @@ app.get('/restaurants', (req, res) => {
     } else {
       res.status(200).send(results);
     }
-  })
-})
+  });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

@@ -8,18 +8,21 @@ const connection = mysql.createConnection({
 });
 
 const addRestaurant = (name, neighborhood, url, averageDishPrice, callback) => {
-
   const queryStr = `INSERT INTO restaurants (name, neighborhood, url, averageDishPrice) VALUES (?, ?, ?, ?)`;
-  connection.query(queryStr, [name, neighborhood, url, averageDishPrice], (error, results) => {
-    if (error) {
-      callback(error);
-    } else {
-      callback(null, results);
-    }
-  });
+  connection.query(
+    queryStr,
+    [name, neighborhood, url, averageDishPrice],
+    (error, results) => {
+      if (error) {
+        callback(error);
+      } else {
+        callback(null, results);
+      }
+    },
+  );
 };
 
-const getRestaurants = (callback) => {
+const getRestaurants = callback => {
   const queryStr = `SELECT * FROM restaurants`;
   connection.query(queryStr, [], (error, results) => {
     if (error) {
