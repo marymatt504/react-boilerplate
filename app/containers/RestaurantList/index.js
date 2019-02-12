@@ -13,7 +13,7 @@ class RestaurantList extends React.Component {
   }
 
   componentDidMount() {
-    // onRestaurantsRequest();
+    this.props.onRestaurantsRequest();
   }
 
   render() {
@@ -24,28 +24,31 @@ class RestaurantList extends React.Component {
 
     console.log('this.props', this.props);
     return (
-      <div onClick={onRestaurantsRequest}>
+      <div>
         Restaurants will be mapped here.
+        {/* {restaurantList[0].name} */}
         {/* DO THINGS HERE WITH PROPS! AND ONCLICK, dispatch actions */}
-        restaurantList: {restaurantList}
-        error: {error}
+        {console.log('getting restaurant list in component UI', restaurantList)}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const restaurantList = state._root.entries[0][1]._root.entries[0][1];
-  const fetching = state._root.entries[0][1]._root.entries[1][1];
-  const error = state._root.entries[0][1]._root.entries[2][1];
+  const restaurantList = state._root.entries[0][1].restaurantList;
+  const fetching = state._root.entries[0][1].fetching;
+  const error = state._root.entries[0][1].error;
 
-  // console.log('restaurantList:', state._root.entries[0][1]._root.entries[0][1]);
+  // console.log('restaurantList line 42:', state._root.entries[0][1]._root.entries[0][1]);
+  console.log(state);
 
   // return {
-  //   restaurantList: state.restaurants.restaurantList,
-  //   fetching: state.restaurants.fetching,
-  //   error: state.restaurants.error
+  //   restaurantList: state.restaurantList,
+  //   fetching: state.fetching,
+  //   error: state.error
   // };
+
+  console.log('restaurantList line 51 RestaurantList', restaurantList);
 
   return {
     restaurantList,

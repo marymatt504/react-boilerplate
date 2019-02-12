@@ -18,8 +18,8 @@ function fetchRestaurants() {
 function* workerSaga() {
   try {
     const response = yield call(fetchRestaurants);
-    console.log('response.data from fetchRestaurants', response.data);
-    const restaurantList = response.data.message;
+    // console.log('response.data from fetchRestaurants', response.data);
+    const restaurantList = response.data;
 
     // dispatch a success action to the store with the new restaurants
     yield put({ type: "API_CALL_SUCCESS", restaurantList });
