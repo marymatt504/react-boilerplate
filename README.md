@@ -1,6 +1,5 @@
 # About
-Add your favorite restaurants in San Francisco to the list.
-Explore restaurant profiles and the Best Deal.
+Add your favorite restaurants in San Francisco to the list; then, explore restaurant profiles and find the Best Deal.
 
 # Setup
 - to start server: npm start
