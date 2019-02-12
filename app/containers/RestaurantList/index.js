@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getBestDeal } from '../../selectors/index';
 
 /* eslint-disable react/prefer-stateless-function */
 
@@ -24,7 +25,6 @@ const Box = styled.div`
   margin: 2%;
 `;
 
-
 class RestaurantList extends React.Component {
   constructor(props) {
     super(props);
@@ -36,37 +36,43 @@ class RestaurantList extends React.Component {
   }
 
   render() {
-    const { restaurantList, error } = this.props;
+    const { restaurantList, error, bestDeal } = this.props;
     // if want to display a UI while fetching, uncomment from here app.js and reducer.js
     // const { fetching, restaurantList, error } = this.props;
+
     return (
       <div>
         <Title>Best Restaurants in San Francisco</Title>
         {restaurantList ? (
           <ul>
-            {restaurantList.map(restaurant => {
-              return <Link to={`/restaurants/${restaurant.id}`}><li key={restaurant.id} id={restaurant.id}>{restaurant.name || '[no name]'}</li></Link>
-            })}
+            {restaurantList.map(restaurant => (
+              <Link to={`/restaurants/${restaurant.id}`}>
+                <li key={restaurant.id} id={restaurant.id}>
+                  {restaurant.name || '[no name]'}
+                </li>
+              </Link>
+            ))}
           </ul>
         ) : (
             <Subtitle>Loading...</Subtitle>
           )}
 
-        {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
+        {error && <p style={{ color: 'red' }}>Uh oh - something went wrong!</p>}
       </div>
     );
   }
 }
 
-
 const mapStateToProps = state => {
-  const restaurantList = state._root.entries[0][1].restaurantList;
+
+  const { restaurantList, error } = state._root.entries[0][1];
   // const fetching = state._root.entries[0][1].fetching;
-  const error = state._root.entries[0][1].error;
+  const bestDeal = getBestDeal(state);
 
   return {
     restaurantList,
     // fetching,
+    bestDeal,
     error,
   };
 };

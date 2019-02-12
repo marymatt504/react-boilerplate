@@ -12,10 +12,8 @@ import styled from 'styled-components';
 const InputField = styled.input`
   border-style: solid;
   border-color: black;
-  margin-left: .5em;
+  margin-left: 0.5em;
 `;
-
-
 
 const FieldDiv = styled.div`
   margin-bottom: 0.2%;
@@ -139,8 +137,8 @@ export default class HomePage extends React.Component {
                 required
                 name="averageDishPrice"
                 type="number"
-                min='0.00'
-                step='1'
+                min="0.00"
+                step="1"
                 value={this.state.averageDishPrice}
                 onChange={this.handleChange}
               />

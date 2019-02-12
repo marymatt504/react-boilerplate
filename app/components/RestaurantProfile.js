@@ -26,7 +26,6 @@ const Box = styled.div`
  * need to make sure store is updated with latest restaurantList beforehand
  */
 
-
 export default function RestaurantProfile({ match }) {
   return (
     <Box>
