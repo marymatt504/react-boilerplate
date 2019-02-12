@@ -26,11 +26,8 @@ app.use(bodyParser.json());
 
 
 app.post('/restaurants', (req, res) => {
-
-  console.log(req.body);
-
+  // console.log(req.body);
   const { name, neighborhood, url, averageDishPrice } = req.body;
-
   db.addRestaurant(
     name,
     neighborhood,
@@ -46,6 +43,16 @@ app.post('/restaurants', (req, res) => {
     },
   );
 });
+
+app.get('/restaurants', (req, res) => {
+  db.getRestaurants((err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(results);
+    }
+  })
+})
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

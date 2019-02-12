@@ -19,16 +19,16 @@ const addRestaurant = (name, neighborhood, url, averageDishPrice, callback) => {
   });
 };
 
-// const getCatByUsername = (username, callback) => {
-//   const queryStr = `SELECT * FROM cats WHERE username = ?`;
-//   connection.query(queryStr, [username], (error, results) => {
-//     if (error) {
-//       callback(error);
-//     } else {
-//       callback(null, results);
-//     }
-//   });
-// };
+const getRestaurants = (callback) => {
+  const queryStr = `SELECT * FROM restaurants`;
+  connection.query(queryStr, [], (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 
 // const updateLastSeenAt = (id, callback) => {
 //   const queryStr = `UPDATE cats SET lastSeenAt = NOW() where id = ?;`;
@@ -96,4 +96,4 @@ const addRestaurant = (name, neighborhood, url, averageDishPrice, callback) => {
 //   });
 // };
 
-module.exports = { addRestaurant };
+module.exports = { addRestaurant, getRestaurants };
