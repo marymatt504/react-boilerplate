@@ -18,11 +18,27 @@ const Subtitle = styled.p`
   font-size: 115%;
 `;
 
-const Box = styled.div`
+const BoxesContainer = styled.div`
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const RestaurantListBox = styled.div`
   border-style: solid;
   border-color: darkgrey;
   padding: 1%;
   margin: 2%;
+  flex: 2;
+`;
+
+const BestDealBox = styled.aside`
+  border-style: solid;
+  border-color: darkgrey;
+  padding: 1%;
+  margin: 2%;
+  flex: 1;
 `;
 
 class RestaurantList extends React.Component {
@@ -37,27 +53,41 @@ class RestaurantList extends React.Component {
 
   render() {
     const { restaurantList, error, bestDeal } = this.props;
-    // if want to display a UI while fetching, uncomment from here app.js and reducer.js
-    // const { fetching, restaurantList, error } = this.props;
+    // if want to display a UI while fetching, uncomment from here, app.js and reducer.js
+    // switch above w/: const { fetching, restaurantList, error } = this.props;
 
     return (
       <div>
         <Title>Best Restaurants in San Francisco</Title>
-        {restaurantList ? (
-          <ul>
-            {restaurantList.map(restaurant => (
-              <Link to={`/restaurants/${restaurant.id}`}>
-                <li key={restaurant.id} id={restaurant.id}>
-                  {restaurant.name || '[no name]'}
-                </li>
-              </Link>
-            ))}
-          </ul>
-        ) : (
-            <Subtitle>Loading...</Subtitle>
-          )}
+        <BoxesContainer>
+          <RestaurantListBox>
+            {restaurantList ? (
+              <ul>
+                {restaurantList.map(restaurant => (
+                  <Link to={`/restaurants/${restaurant.id}`}>
+                    <li key={restaurant.id} id={restaurant.id}>
+                      {restaurant.name || '[no name]'}
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            ) : (
+                <Subtitle>Loading...</Subtitle>
+              )}
 
-        {error && <p style={{ color: 'red' }}>Uh oh - something went wrong!</p>}
+            {error && <p style={{ color: 'red' }}>Uh oh - something went wrong!</p>}
+          </RestaurantListBox>
+          <BestDealBox>
+            {bestDeal ? (
+              <div>
+                <Subtitle>Best Deal: </Subtitle>
+                <p>Average Dish Price only ${bestDeal.averageDishPrice} at <Link to={`/restaurants/${bestDeal.id}`}>{bestDeal.name}</Link>.</p>
+              </div>
+            ) : (
+                <Subtitle>Loading...</Subtitle>
+              )}
+          </BestDealBox>
+        </BoxesContainer>
       </div>
     );
   }
