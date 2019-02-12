@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 /* eslint-disable react/prefer-stateless-function */
 
 const Title = styled.p`
@@ -43,7 +45,7 @@ class RestaurantList extends React.Component {
         {restaurantList ? (
           <ul>
             {restaurantList.map(restaurant => {
-              return <li key={restaurant.id} id={restaurant.id}>{restaurant.name}</li>
+              return <Link to={`/restaurants/${restaurant.id}`}><li key={restaurant.id} id={restaurant.id}>{restaurant.name || '[no name]'}</li></Link>
             })}
           </ul>
         ) : (
@@ -55,6 +57,7 @@ class RestaurantList extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = state => {
   const restaurantList = state._root.entries[0][1].restaurantList;
