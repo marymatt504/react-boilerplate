@@ -64,8 +64,8 @@ class RestaurantList extends React.Component {
             {restaurantList ? (
               <ul>
                 {restaurantList.map(restaurant => (
-                  <Link to={`/restaurants/${restaurant.id}`}>
-                    <li key={restaurant.id} id={restaurant.id}>
+                  <Link to={`/restaurants/${restaurant.id}`} key={restaurant.id}>
+                    <li id={restaurant.id}>
                       {restaurant.name || '[no name]'}
                     </li>
                   </Link>
