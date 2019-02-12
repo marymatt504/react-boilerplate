@@ -6,7 +6,6 @@ const getRestaurants = state => {
 };
 
 export const getBestDeal = createSelector([getRestaurants], restaurants => {
-  // console.log('restaurants:', restaurants);
   if (restaurants) {
     return restaurants.sort(
       (a, b) => a.averageDishPrice - b.averageDishPrice,
@@ -14,4 +13,3 @@ export const getBestDeal = createSelector([getRestaurants], restaurants => {
   }
 });
 
-// LEFT OFF HERE..try to connect selector to store and use with mapstate to props in restaurant List
