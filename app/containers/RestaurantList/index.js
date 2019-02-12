@@ -34,8 +34,9 @@ class RestaurantList extends React.Component {
   }
 
   render() {
-    const { fetching, restaurantList, error } = this.props;
-    // WORK IN HERE RENDERING CONDITIONALLY WHEN THERE IS A RESTAURANTLIST!!
+    const { restaurantList, error } = this.props;
+    // if want to display a UI while fetching, uncomment from here app.js and reducer.js
+    // const { fetching, restaurantList, error } = this.props;
     return (
       <div>
         <Title>Best Restaurants in San Francisco</Title>
@@ -48,7 +49,6 @@ class RestaurantList extends React.Component {
         ) : (
             <Subtitle>Loading...</Subtitle>
           )}
-        {/* {console.log('getting restaurant list in component UI', restaurantList)} */}
 
         {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
       </div>
@@ -58,12 +58,12 @@ class RestaurantList extends React.Component {
 
 const mapStateToProps = state => {
   const restaurantList = state._root.entries[0][1].restaurantList;
-  const fetching = state._root.entries[0][1].fetching;
+  // const fetching = state._root.entries[0][1].fetching;
   const error = state._root.entries[0][1].error;
 
   return {
     restaurantList,
-    fetching,
+    // fetching,
     error,
   };
 };

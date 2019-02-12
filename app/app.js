@@ -39,7 +39,7 @@ import { translationMessages } from './i18n';
 const initialState = {
   restaurants: {
     restaurantList: null,
-    fetching: false,
+    // fetching: false,
     error: null
   }
 };

@@ -12,6 +12,7 @@ import styled from 'styled-components';
 const InputField = styled.input`
   border-style: solid;
   border-color: black;
+  margin-left: .5em;
 `;
 
 const FieldDiv = styled.div`
@@ -70,7 +71,7 @@ export default class HomePage extends React.Component {
     const submission = {
       name: this.state.name.toLowerCase(),
       neighborhood: this.state.neighborhood.toLowerCase(),
-      url: this.state.url,
+      url: `http://www.${this.state.url}`,
       averageDishPrice: this.state.averageDishPrice,
     };
     axios
@@ -119,7 +120,7 @@ export default class HomePage extends React.Component {
           </label>
           <label>
             <FieldDiv>
-              {`Website: `}
+              {`Website: http://www.`}
               <InputField
                 required
                 name="url"
@@ -131,11 +132,13 @@ export default class HomePage extends React.Component {
           </label>
           <label>
             <FieldDiv>
-              {`Average Dish Price: `}
+              {`Average Dish Price: $`}
               <InputField
                 required
                 name="averageDishPrice"
                 type="number"
+                min='0.00'
+                step='1'
                 value={this.state.averageDishPrice}
                 onChange={this.handleChange}
               />
